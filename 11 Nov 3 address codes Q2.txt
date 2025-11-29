@@ -1,0 +1,29 @@
+Given:
+// R3 will store the total sum
+// R4 = loop counter, R5 = current address
+// R6 = temp for data, R7 = temp for ham_weight
+ADDI R3, R0, 0                      // R3 = TotalSum = 0
+ADDI R4, R0, 5                      // R4 = Counter = 5
+ADDI R5, R0, 24                     // R5 = CurrentAddress = 24
+LOOP: LD R6, 0(R5)                  // R6 = Mem[CurrentAddress]
+HAM R7, R6                          // R7 = HammingWeight(R6)
+ADD R3, R3, R7                      // TotalSum = TotalSum + R7
+ADDI R5, R5, 8                      // CurrentAddress += 8
+SUBI R4, R4, 1                      // Counter--
+BPL R4, LOOP                        // Branch to LOOP if Counter > 0
+# Final result is in R3
+# (Processor proceeds to HALT)
+
+
+3 Address Codes:
+10000010001100000000000000000000
+10000010010000000000000000000101
+10000010010100000000000000011000
+11000000011001010000000000000000
+00010011011101100000000000000000
+00000010001100110111000000000000
+10000010010101010000000000001000
+10000011010001000000000000000001
+10101010000001001111111111111011
+11000001001100000000000000000000   // Store R3 at Mem[0]
+01111000000000000000000000000000   // HALT
